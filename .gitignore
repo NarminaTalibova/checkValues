@@ -1,32 +1,54 @@
-# Prerequisites
-*.d
+namespace ConsoleApp12
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string testValue = "Person03";
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+            bool isPasswordValid = CheckPassword(testValue);
 
-# Precompiled Headers
-*.gch
-*.pch
+            if (isPasswordValid)
+            {
+                Console.WriteLine("uygundur.");
+            }
+            else
+            {
+                Console.WriteLine("uygun deyildir.");
+            }
+        }
+        static bool CheckPassword(string password)
+        {
+            bool hasDigit = false;
+            bool hasUpperCase = false;
+            bool hasLowerCase = false;
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+            foreach (char character in password)
+            {
+                // 1. En az 1 reqem
+                
+                if (char.IsDigit(character))
+                {
+                    hasDigit = true;
+                }
 
-# Fortran module files
-*.mod
-*.smod
+                // 2. En az 1 boyuk herf
+                if (char.IsUpper(character))
+                {
+                    hasUpperCase = true;
+                }
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+                // 3. En az 1 kicik herf
+                if (char.IsLower(character))
+                {
+                    hasLowerCase = true;
+                }
+            }
 
-# Executables
-*.exe
-*.out
-*.app
+            // uygundur
+            return hasDigit && hasUpperCase && hasLowerCase;
+        }
+
+
+    }
+}
